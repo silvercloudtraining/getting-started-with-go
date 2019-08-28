@@ -19,7 +19,8 @@ func main() {
 			"bool": %v,
 			"complex": "%v"
 		}`
-		fmt.Fprintf(w, format, myInt, myFloat, myBool, myComplex)
+		response := fmt.Sprintf(format, myInt, myFloat, myBool, myComplex)
+		w.Write([]byte(response))
 	})
 	var err = http.ListenAndServe(":3000", nil)
 	if err != nil {
