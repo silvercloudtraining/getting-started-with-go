@@ -9,6 +9,8 @@ import (
 	"strconv"
 )
 
+const port = ":3000"
+
 type user struct {
 	ID        int    `json:"id"`
 	FirstName string `json:"firstName"`
@@ -28,7 +30,7 @@ var (
 func main() {
 	http.HandleFunc("/users", userHandler)
 	http.HandleFunc("/users/", userHandler)
-	var err = http.ListenAndServe(":3000", nil)
+	var err = http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+const port = ":3000"
+
 func main() {
 	myInt := 42
 	myFloat := 3.14
@@ -29,7 +31,7 @@ func main() {
 		}
 
 	})
-	var err = http.ListenAndServe(":3000", nil)
+	var err = http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

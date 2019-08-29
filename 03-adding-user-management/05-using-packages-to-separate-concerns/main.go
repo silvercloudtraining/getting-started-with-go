@@ -7,9 +7,11 @@ import (
 	"github.com/silvercloudtraining/coffeeservice/routing"
 )
 
+const port = ":3000"
+
 func main() {
 	routing.RegisterRoutes()
-	var err = http.ListenAndServe(":3000", nil)
+	var err = http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

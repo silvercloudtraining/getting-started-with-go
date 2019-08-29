@@ -6,6 +6,8 @@ import (
 	"net/http"
 )
 
+const port = ":3000"
+
 type user struct {
 	ID        int    `json:"id"`
 	FirstName string `json:"firstName"`
@@ -29,7 +31,7 @@ func main() {
 		}
 
 	})
-	var err = http.ListenAndServe(":3000", nil)
+	var err = http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
