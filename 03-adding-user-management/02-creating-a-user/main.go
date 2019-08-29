@@ -51,11 +51,10 @@ func main() {
 				w.WriteHeader(http.StatusInternalServerError)
 				return
 			}
+			w.Header().Add("content-type", "application/json")
 			w.Write(data)
-			return
 		default:
 			w.WriteHeader(http.StatusMethodNotAllowed)
-			return
 		}
 	})
 	var err = http.ListenAndServe(port, nil)

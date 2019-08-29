@@ -47,7 +47,6 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 			post(w, r)
 		default:
 			w.WriteHeader(http.StatusMethodNotAllowed)
-			return
 		}
 	} else {
 		id, _ := strconv.Atoi(matches[1])
@@ -95,8 +94,8 @@ func post(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	w.Header().Add("content-type", "application/json")
 	w.Write(data)
-	return
 }
 
 func getByID(id int) (user, error) {

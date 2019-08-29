@@ -40,7 +40,6 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 		post(w, r)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
-		return
 	}
 }
 
@@ -69,8 +68,8 @@ func post(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	w.Header().Add("content-type", "application/json")
 	w.Write(data)
-	return
 }
 
 func getUsers() []user {
