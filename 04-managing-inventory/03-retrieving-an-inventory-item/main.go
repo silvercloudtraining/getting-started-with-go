@@ -12,8 +12,8 @@ import (
 const port = ":3000"
 
 func main() {
-	inv := coffee.Inventory{}
-	routing.RegisterRoutes(&inv)
+	inv := coffee.NewInventory()
+	routing.RegisterRoutes(inv)
 	var err = http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal(err)

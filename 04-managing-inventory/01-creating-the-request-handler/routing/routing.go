@@ -6,7 +6,7 @@ func RegisterRoutes() {
 	http.HandleFunc("/users", userHandler)
 	http.HandleFunc("/users/", userHandler)
 
-	ih := &inventoryHandler{}
-	http.Handle("/inventory", ih)
-	http.Handle("/inventory/", ih)
+	ch := &coffeeHandler{}
+	http.Handle("/coffee", ch)
+	http.Handle("/coffee/", ch)
 }

@@ -4,32 +4,32 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/silvercloudtraining/coffeeservice/inventory"
+	"github.com/silvercloudtraining/coffeeservice/coffee"
 )
 
-type inventoryHandler struct {
-	inventory *inventory.Inventory
+type coffeeHandler struct {
+	inventory *coffee.Inventory
 }
 
-func (ih inventoryHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (ch coffeeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
-		ih.get(w, r)
+		ch.get(w, r)
 	case http.MethodPost:
-		ih.post(w, r)
+		ch.post(w, r)
 	default:
 		w.WriteHeader(http.StatusMethodNotAllowed)
 	}
 }
 
-func (ih inventoryHandler) get(w http.ResponseWriter, r *http.Request) {
+func (ch coffeeHandler) get(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
-	data, _ := json.Marshal(ih.inventory.GetAll())
+	data, _ := json.Marshal(ch.inventory.GetAll())
 	w.Write(data)
 }
 
-func (ih inventoryHandler) post(w http.ResponseWriter, r *http.Request) {
-	var item inventory.Item
+func (ch coffeeHandler) post(w http.ResponseWriter, r *http.Request) {
+	var item coffee.Item
 	dec := json.NewDecoder(r.Body)
 	err := dec.Decode(&item)
 	if err != nil {
@@ -37,7 +37,7 @@ func (ih inventoryHandler) post(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Could not parse inventory item"))
 		return
 	}
-	item = ih.inventory.Add(item)
+	item = ch.inventory.Add(item)
 	w.Header().Add("content-type", "application/json")
 
 	data, _ := json.Marshal(item)

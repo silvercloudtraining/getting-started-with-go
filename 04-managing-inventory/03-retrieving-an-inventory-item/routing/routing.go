@@ -10,7 +10,7 @@ func RegisterRoutes(inv *coffee.Inventory) {
 	http.HandleFunc("/users", userHandler)
 	http.HandleFunc("/users/", userHandler)
 
-	ch := &coffeeHandler{inventory: inv}
+	ch := NewCoffeeHandler(inv)
 	http.Handle("/coffee", ch)
 	http.Handle("/coffee/", ch)
 }
